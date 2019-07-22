@@ -1,0 +1,12 @@
+
+.survey-description {
+    text-align: justify;
+}
+.input-group-addon,
+input[type=email],
+input[type=submit],
+.modal-content{border-radius:0px}
+
+.modal-lg {
+    margin-top: 100px;
+}
