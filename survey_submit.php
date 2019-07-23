@@ -1,22 +1,24 @@
 <?php
 require("PHPMailer-master/src/PHPMailer.php");
 require("PHPMailer-master/src/SMTP.php");
-require ("PHPMailer-master/src/Exception.php");
+require("PHPMailer-master/src/Exception.php");
 
 $message = '<html><body> <p>Survey Form data.</p>';
-$message .= '<label>Email : </label>' . $_POST['email'] .
-    '<br>';
-$message .= '<label>What type of implants did you have? : </label>' . $_POST['implants'] .
-    '<br>';
 
-if(isset($_POST['symptoms'])) {
-    $message .= '<label>What type of implants did you have? : </label>'. '<br>';;
-    foreach ($_POST['symptoms'] as $key => $value) {
-        $message .= ($key + 1) . '.' . $value . '<br>';
+if (isset($_POST)) {
+    foreach ($_POST as $key => $value) {
+        if (is_array($value)) {
+            $message .= '<label>' . $key . ' : ' . ' </label>' . '<br>';
+            foreach ($value as $index => $val) {
+                $message .= ($index + 1) . ' . ' . $val . '<br>';
+            }
+        } else {
+            $message .= '<label>';
+            $message .= $key . '</label>' . ' : ' . $value .
+                '<br>';
+        }
     }
-
 }
-
 $message .= '</body></html>';
 
 $mail = new PHPMailer\PHPMailer\PHPMailer();
@@ -37,8 +39,7 @@ $mail->AddAddress($address);
 $mail->MsgHTML($message);
 if (!$mail->send()) {
     echo 'failed';
-}
-else {
+} else {
     echo 'success';
 }
 

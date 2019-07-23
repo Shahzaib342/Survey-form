@@ -2,11 +2,26 @@
 .survey-description {
     text-align: justify;
 }
-.input-group-addon,
-input[type=email],
-input[type=submit],
-.modal-content{border-radius:0px}
 
 .modal-lg {
     margin-top: 100px;
+}
+
+.modal-header {
+    padding: 0;
+}
+
+.btn.btn-default {
+    color: #333;
+    background-color: #d4d4d4;
+    border-color: #8c8c8c;
+}
+
+.alert-success {
+    margin-top: 20px;
+    display: none;
+}
+
+.survey-container {
+    margin-bottom: 100px;
 }
